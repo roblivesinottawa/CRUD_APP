@@ -1,0 +1,40 @@
+<!-- index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="favicon.png" />
+   <style>
+       body {
+    background-color: darkgray;
+    }
+   </style>
+    <title>My App</title>
+</head>
+<body>
+    <h1>May Node be with you!</h1>
+    <form action="/movies" method="POST">
+    <!-- <input type="text" placeholder="name" name="name"> -->
+    <input type="text" placeholder="movie" name="movie">
+    <button type="submit">Submit</button>
+    </form>
+    <%= movies %>
+    <h2> Movies </h2>
+
+    <ul class="movies">
+<% for(let i=0; movies.length; i++) {&>
+    <li class="movie">
+        <span><%= movies[i].name %></span>:
+        <span><%= movies[i].movie %></span>
+    </li>
+
+<%} %>
+
+    </ul>
+</body>
+</html>
+
