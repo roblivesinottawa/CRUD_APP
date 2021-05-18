@@ -1,46 +1,59 @@
 <!-- index.ejs -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-   
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
     <link rel="icon" type="image/png" href="favicon.png" />
-   <style>
-       body {
-    background-color: darkgray;
-    }
-   </style>
-    <title>My App</title>
-</head>
-<body>
-    <h1>May Node be with you!</h1>
-    <form action="/movies" method="POST">
-    <!-- <input type="text" placeholder="name" name="name"> -->
-    <input type="text" placeholder="movie" name="movie">
-    <button type="submit">Submit</button>
-    </form>
-    <%= movies %>
-    <h2> Movies </h2>
+    <style>
+      body {
+        background-color: darkgray;
+      }
+    </style>
+    <title>Movies App</title>
+    <link rel="stylesheet" href="/public/styles.css" />
+  </head>
+  <body>
+    <h1 data-position="header">May Node be with you!</h1>
+    <section data-position="add-quote">
+      <h2>Add Movie</h2>
+      <form action="/movies" method="POST">
+        <input type="text" placeholder="movie" name="movie" />
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+    <section data-position="update-quote">
+      <div>
+        <h2>Remove movie</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus,
+          provident?
+        </p>
+        <button id="delete-button">Delete movies</button>
+      </div>
+      <div class="message"></div>
+    </section>
 
-    <ul class="movies">
-<% for(let i=0; movies.length; i++) {&>
-    <li class="movie">
-        <span><%= movies[i].name %></span>:
-        <span><%= movies[i].movie %></span>
-    </li>
+    <section data-position="movies">
+      <h2>Movies</h2>
+      <ul class="movies">
+        <% for(let i=0; movies.length; i++) {&>
+        <li class="movie">
+          <span><%= movies[i].name %></span>:
+          <span><%= movies[i].movie %></span>
+        </li>
 
-<%} %>
+        <%} %>
+      </ul>
+    </section>
 
-    </ul>
-    <div>
-        <h2>Star Wars</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, dicta?</p>
-        <button id="update-button">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores, itaque!</button>
-    </div>
     <script src="/public/main.js"></script>
-</body>
+  </body>
 </html>
-
