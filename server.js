@@ -20,6 +20,7 @@ MongoClient.connect(MONGO_DB_URI, {useUnifiedTopology: true })
     // middlewares
     app.use(express.json())
     app.use(express.urlencoded({ extended: true }))
+    app.use(express.static('public'))
     
     // routes
     app.get('/', (req, res) => {
@@ -28,7 +29,7 @@ MongoClient.connect(MONGO_DB_URI, {useUnifiedTopology: true })
             res.render('index.ejs', { movies: movies})
         })
         .catch(error => console.error(error))
-    }
+    })
 
     app.post('/movies', (req, res) => {
         moviesCollection.insertOne(req.body)
@@ -36,6 +37,21 @@ MongoClient.connect(MONGO_DB_URI, {useUnifiedTopology: true })
             res.redirect('/')
         }).catch(error => console.error(error))
 
+    app.put('/movies', (req, res) => {
+        moviesCollection.findOneAndUpdate(
+            {name: 'Return Of The Jedi'},
+            {
+                $set: {
+                    name: req.body.name,
+                    movie: req.body.movie
+                }
+            },
+           { upsert: true }
+        ).then(result => {
+            res.json('Success!')
+        })
+        .catch(error => console.error(error))
+    })
     
     app.listen(PORT, () => console.log(`Server listening at localhost:${PORT}`))
 
